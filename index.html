@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0714" />
+<title>Selamat Ulang Tahun, Mama 🎂</title>
+<meta name="description" content="Sebuah kejutan kecil untuk mama — dengan kembang api, kue, dan seluruh rasa sayang." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Selamat Ulang Tahun, Mama 🎂" />
+<meta property="og:description" content="Ada hadiah kecil yang menunggu. Ketuk kotaknya, tiup lilinnya, dan baca suratnya." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Selamat Ulang Tahun, Mama 🎂" />
+<meta name="twitter:description" content="Ada hadiah kecil yang menunggu. Ketuk kotaknya, tiup lilinnya, dan baca suratnya." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+</head>
+<body class="is-locked">
+
+  <!-- lapisan langit & efek -->
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ================= PEMBUKA: KOTAK HADIAH ================= -->
+  <div class="gate" id="gate">
+    <div class="gate__glow" aria-hidden="true"></div>
+    <div class="gate__inner">
+      <p class="eyebrow reveal-up" style="--d:.1s">Sebuah kejutan kecil</p>
+      <h1 class="gate__title reveal-up" style="--d:.25s">
+        Untuk <span class="script gold" id="gateName">Mama</span>
+      </h1>
+      <p class="gate__sub reveal-up" id="gateSub" style="--d:.4s">
+        Ada satu hadiah kecil yang sudah menunggu sejak pagi.
+      </p>
+
+      <div class="gift-wrap reveal-up" style="--d:.55s">
+        <button class="gift" id="giftBtn" aria-label="Buka kotak hadiah">
+          <span class="gift__halo" aria-hidden="true"></span>
+          <span class="gift__beam" aria-hidden="true"></span>
+          <span class="gift__bow" aria-hidden="true">
+            <svg viewBox="0 0 120 70" aria-hidden="true">
+              <path d="M60 60C40 60 18 52 12 36 7 23 14 10 27 11c14 1 24 20 33 49Z" fill="url(#bowGrad)" />
+              <path d="M60 60C80 60 102 52 108 36c5-13-2-26-15-25-14 1-24 20-33 49Z" fill="url(#bowGrad)" />
+              <path d="M60 60c-8 10-14 9-18 2-5-9 4-16 18-2Z" fill="#f7b8cf" />
+              <path d="M60 60c8 10 14 9 18 2 5-9-4-16-18-2Z" fill="#f7b8cf" />
+              <circle cx="60" cy="58" r="7" fill="#ffe3ae" />
+              <defs>
+                <linearGradient id="bowGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ffd6a8" />
+                  <stop offset=".55" stop-color="#f7a8c4" />
+                  <stop offset="1" stop-color="#d97ba6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="gift__lid" aria-hidden="true">
+            <span class="gift__ribbon-v"></span>
+          </span>
+          <span class="gift__box" aria-hidden="true">
+            <span class="gift__ribbon-v"></span>
+            <span class="gift__ribbon-h"></span>
+            <span class="gift__shine"></span>
+          </span>
+          <span class="gift__shadow" aria-hidden="true"></span>
+        </button>
+        <p class="gift__hint">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          Ketuk hadiahnya untuk membuka
+        </p>
+      </div>
+    </div>
+    <p class="gate__foot">Dibuat dengan hati, untuk kamu yang selalu memberi lebih dulu.</p>
+  </div>
+
+  <!-- ================= ISI ================= -->
+  <div class="site" id="site">
+
+    <header class="topbar">
+      <a class="brand" href="#atas" aria-label="Kembali ke atas">
+        <span class="brand__mark" id="brandMark">M</span>
+        <span class="brand__text">ulang tahun</span>
+      </a>
+      <div class="topbar__actions">
+        <button class="icon-btn" id="musicBtn" aria-pressed="false" aria-label="Nyalakan musik">
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="icon-btn__label">Musik</span>
+        </button>
+        <button class="icon-btn" id="burstBtn" aria-label="Luncurkan kembang api">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l1.9 4.6 4.8-1.4-1.4 4.8 4.6 1.9-4.6 1.9 1.4 4.8-4.8-1.4L12 21.4l-1.9-4.6-4.8 1.4 1.4-4.8L2.1 11.5l4.6-1.9-1.4-4.8 4.8 1.4L12 2.6Z"/></svg>
+          <span class="icon-btn__label">Kembang api</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="atas">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero__deco" aria-hidden="true">
+          <span class="balloon balloon--1"></span>
+          <span class="balloon balloon--2"></span>
+          <span class="balloon balloon--3"></span>
+          <span class="petal petal--1">🌸</span>
+          <span class="petal petal--2">🌷</span>
+          <span class="petal petal--3">🌸</span>
+        </div>
+
+        <p class="pill reveal" data-reveal>
+          <span class="pill__dot" aria-hidden="true"></span>
+          <span id="dateText">23 Oktober 2026</span>
+        </p>
+
+        <h1 class="hero__title">
+          <span class="hero__line reveal" data-reveal style="--d:.05s">Selamat</span>
+          <span class="hero__line reveal" data-reveal style="--d:.15s">Ulang Tahun</span>
+          <span class="hero__name script gold reveal" data-reveal style="--d:.3s" id="heroName">Mama</span>
+        </h1>
+
+        <p class="hero__tagline reveal" data-reveal style="--d:.45s" id="tagline">
+          Terima kasih sudah menjadi rumah paling hangat di dunia.
+        </p>
+
+        <div class="divider reveal" data-reveal style="--d:.55s" aria-hidden="true">
+          <span></span><svg viewBox="0 0 24 24"><path d="M12 20.5S3 14.8 3 8.9A4.9 4.9 0 0 1 12 5.8a4.9 4.9 0 0 1 9 3.1c0 5.9-9 11.6-9 11.6Z"/></svg><span></span>
+        </div>
+
+        <a class="scroll-cue reveal" data-reveal style="--d:.7s" href="#kue">
+          <span class="scroll-cue__text">Gulir pelan-pelan</span>
+          <span class="scroll-cue__line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <!-- KUE -->
+      <section class="section cake-section" id="kue">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Bab satu</p>
+          <h2 class="section__title reveal" data-reveal style="--d:.08s">Kue &amp; Lilin</h2>
+          <p class="section__sub reveal" data-reveal style="--d:.16s">
+            Pejamkan mata sebentar, buat satu permohonan, lalu tiup lilinnya.
+          </p>
+        </div>
+
+        <div class="cake-stage reveal" data-reveal style="--d:.2s">
+          <div class="cake-glow" aria-hidden="true"></div>
+
+          <div class="cake" id="cake" aria-hidden="true">
+            <div class="candles" id="candles"></div>
+
+            <div class="tier tier--top">
+              <div class="frosting"></div>
+              <div class="drip d1"></div><div class="drip d2"></div><div class="drip d3"></div>
+              <div class="sprinkles"></div>
+            </div>
+            <div class="tier tier--mid">
+              <div class="frosting"></div>
+              <div class="drip d1"></div><div class="drip d2"></div><div class="drip d3"></div><div class="drip d4"></div>
+            </div>
+            <div class="tier tier--bottom">
+              <div class="frosting"></div>
+              <div class="drip d1"></div><div class="drip d2"></div><div class="drip d3"></div><div class="drip d4"></div>
+            </div>
+            <div class="plate"></div>
+          </div>
+
+          <div class="cake-actions">
+            <button class="btn btn--primary" id="blowBtn">
+              <span class="btn__icon" aria-hidden="true">💨</span>
+              <span id="blowLabel">Tiup Lilin</span>
+            </button>
+            <p class="cake-note" id="cakeNote">Ketuk tombolnya, anggap Mama sedang meniupnya sendiri.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SURAT -->
+      <section class="section letter-section" id="surat">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Bab dua</p>
+          <h2 class="section__title reveal" data-reveal style="--d:.08s">Surat Kecil</h2>
+          <p class="section__sub reveal" data-reveal style="--d:.16s">
+            Ada hal-hal yang lebih enak ditulis daripada diucapkan.
+          </p>
+        </div>
+
+        <div class="envelope reveal" data-reveal style="--d:.2s" id="envelope">
+          <div class="envelope__shell">
+            <div class="envelope__back" aria-hidden="true"></div>
+            <div class="envelope__front" aria-hidden="true">
+              <span class="envelope__flap"></span>
+              <span class="envelope__corner envelope__corner--l"></span>
+              <span class="envelope__corner envelope__corner--r"></span>
+            </div>
+            <button class="envelope__seal" id="sealBtn" aria-expanded="false" aria-controls="letterBody">
+              <span class="seal__wax" id="sealWax">M</span>
+              <span class="seal__hint">Buka surat</span>
+            </button>
+          </div>
+          <article class="letter" id="letterBody">
+            <div class="letter__header">
+              <span class="letter__to">Untuk <span id="letterTo">Mama</span></span>
+              <span class="letter__date" id="letterDate">23 Oktober 2026</span>
+            </div>
+            <div class="letter__body" id="letterText"></div>
+            <div class="letter__sign">
+              <span>Dengan seluruh sayang,</span>
+              <span class="script letter__sign-name" id="letterFrom">Anakmu</span>
+            </div>
+            <div class="letter__tape" aria-hidden="true"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- GALERI -->
+      <section class="section gallery-section" id="kenangan">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Bab tiga</p>
+          <h2 class="section__title reveal" data-reveal style="--d:.08s">Kenangan</h2>
+          <p class="section__sub reveal" data-reveal style="--d:.16s">
+            Beberapa potret yang selalu membuat aku tersenyum. Ketuk untuk melihat lebih dekat.
+          </p>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </section>
+
+      <!-- ALASAN -->
+      <section class="section reasons-section" id="alasan">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Bab empat</p>
+          <h2 class="section__title reveal" data-reveal style="--d:.08s">Alasan Mama Hebat</h2>
+          <p class="section__sub reveal" data-reveal style="--d:.16s">
+            Kalau harus disebutkan satu per satu, daftarnya tidak akan pernah selesai.
+          </p>
+        </div>
+        <div class="reasons" id="reasons"></div>
+      </section>
+
+      <!-- DOA -->
+      <section class="section wishes-section" id="doa">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Bab lima</p>
+          <h2 class="section__title reveal" data-reveal style="--d:.08s">Lentera Doa</h2>
+          <p class="section__sub reveal" data-reveal style="--d:.16s">
+            Tulis satu doa untuk Mama, lalu lepaskan lenternya ke langit.
+          </p>
+        </div>
+
+        <form class="wish-form reveal" data-reveal style="--d:.2s" id="wishForm" autocomplete="off">
+          <label class="sr-only" for="wishInput">Tulis doa untuk mama</label>
+          <input class="wish-input" id="wishInput" type="text" maxlength="90"
+                 placeholder="Contoh: semoga Mama selalu sehat dan bahagia..." />
+          <button class="btn btn--gold" type="submit">
+            <span aria-hidden="true">🏮</span> Lepaskan Lentera
+          </button>
+        </form>
+
+        <ul class="wishes" id="wishes"></ul>
+      </section>
+
+      <!-- PENUTUP -->
+      <section class="outro" id="penutup">
+        <div class="outro__inner reveal" data-reveal>
+          <p class="eyebrow">Sekali lagi, dari semua yang menyayangimu</p>
+          <h2 class="outro__title">
+            Selamat ulang tahun,<br />
+            <span class="script gold" id="outroName">Mama</span>
+          </h2>
+          <p class="outro__text">
+            Semoga tahun ini penuh hal-hal baik, sehat selalu, dan bahagia yang tidak ada habisnya.
+          </p>
+          <div class="outro__actions">
+            <button class="btn btn--primary" id="finaleBtn">
+              <span aria-hidden="true">🎆</span> Kembang Api Lagi
+            </button>
+            <button class="btn btn--ghost" id="replayBtn">
+              <span aria-hidden="true">🎁</span> Ulangi Kejutannya
+            </button>
+          </div>
+          <p class="outro__sign script" id="outroSign">— Anakmu</p>
+        </div>
+        <footer class="footer">
+          <span>Dibuat khusus untuk <span id="footName">Mama</span></span>
+          <span class="footer__dot" aria-hidden="true">•</span>
+          <span id="footYear">2026</span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto kenangan" hidden>
+    <button class="lightbox__close" id="lightboxClose" aria-label="Tutup">✕</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="" />
+      <figcaption id="lightboxCap"></figcaption>
+    </figure>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/fx.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
